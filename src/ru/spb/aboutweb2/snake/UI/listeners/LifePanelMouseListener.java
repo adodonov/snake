@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.UI.listeners;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 import ru.spb.aboutweb2.snake.UI.Coords;
 import ru.spb.aboutweb2.snake.UI.LifePanel;
 import ru.spb.aboutweb2.snake.UI.UIMode;
@@ -24,7 +24,7 @@ public class LifePanelMouseListener extends MouseAdapter {
 
     private Color defaultColor = new Color(51, 153, 51);
 
-    public LifePanelMouseListener(Snake lifeController, LifePanel lifePanel) {
+    public LifePanelMouseListener(SnakeGame lifeController, LifePanel lifePanel) {
         this.lifeController = lifeController;
         this.lifePanel = lifePanel;
     }
@@ -62,7 +62,7 @@ public class LifePanelMouseListener extends MouseAdapter {
 
     }
 
-    private Snake lifeController;
+    private SnakeGame lifeController;
 
     private boolean isInitState() {
         return UIMode.INIT.equals(lifeController.getLifeUI().getMode());

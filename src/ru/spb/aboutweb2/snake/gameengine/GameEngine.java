@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.gameengine;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 import ru.spb.aboutweb2.snake.UI.Coords;
 
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public interface GameEngine {
-    void setController(Snake life);
+    void setController(SnakeGame life);
 
     void initLifeState(Set<Coords> coords);
 

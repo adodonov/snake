@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.UI;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +22,9 @@ public class MenuBuilder {
     private MenuItem miSave;
     private MenuItem miExit;
     private LifeFrame lifeGUI;
-    private Snake lifeController;
+    private SnakeGame lifeController;
 
-    public MenuBuilder(LifeFrame lifeGUI, Snake lifeController) {
+    public MenuBuilder(LifeFrame lifeGUI, SnakeGame lifeController) {
         this.lifeGUI = lifeGUI;
         this.lifeController = lifeController;
     }

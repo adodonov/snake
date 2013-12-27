@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.UI;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 
 import java.awt.*;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.Set;
 public interface LifeUI {
     void update(Map<Coords, Color> cells);
 
-    void setController(Snake life);
+    void setController(SnakeGame life);
 
     void showUI();
 

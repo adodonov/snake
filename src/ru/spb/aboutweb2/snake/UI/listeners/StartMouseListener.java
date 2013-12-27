@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.UI.listeners;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,9 +14,9 @@ import java.awt.event.MouseEvent;
  */
 public class StartMouseListener extends MouseAdapter {
 
-    private Snake lifeController;
+    private SnakeGame lifeController;
 
-    public StartMouseListener(Snake lifeController) {
+    public StartMouseListener(SnakeGame lifeController) {
         this.lifeController = lifeController;
     }
 

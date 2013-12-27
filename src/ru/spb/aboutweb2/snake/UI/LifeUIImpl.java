@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.UI;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 import ru.spb.aboutweb2.snake.UI.listeners.*;
 
 import javax.swing.*;
@@ -24,11 +24,11 @@ public class LifeUIImpl implements LifeUI {
 
     private LifePanel lifePanel;
 
-    private Snake lifeController;
+    private SnakeGame lifeController;
 
     private MenuBuilder mBuilder;
 
-    public void setController(Snake lifeController) {
+    public void setController(SnakeGame lifeController) {
         this.lifeController = lifeController;
     }
 

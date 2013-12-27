@@ -1,6 +1,6 @@
 package ru.spb.aboutweb2.snake.gameengine;
 
-import ru.spb.aboutweb2.snake.Snake;
+import ru.spb.aboutweb2.snake.SnakeGame;
 import ru.spb.aboutweb2.snake.UI.Coords;
 import ru.spb.aboutweb2.snake.gameengine.transformers.Transformer;
 import ru.spb.aboutweb2.snake.gameengine.transformers.TransformerFactory;
@@ -17,11 +17,11 @@ import java.util.Set;
  */
 public class GameEngineImpl implements GameEngine {
 
-    private Snake lifeController;
+    private SnakeGame lifeController;
     private LifeState lifeState;
     private EngineStatus engineStatus;
 
-    public void setController(Snake lifeController) {
+    public void setController(SnakeGame lifeController) {
         this.lifeController = lifeController;
     }
 
@@ -126,11 +126,11 @@ public class GameEngineImpl implements GameEngine {
             Toolkit.getDefaultToolkit().beep();
     }
 
-    public Snake getLifeController() {
+    public SnakeGame getLifeController() {
         return lifeController;
     }
 
-    public void setLifeController(Snake lifeController) {
+    public void setLifeController(SnakeGame lifeController) {
         this.lifeController = lifeController;
     }
 
