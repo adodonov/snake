@@ -3,9 +3,7 @@ package ru.spb.aboutweb2.snake.gameengine.model;
 import ru.spb.aboutweb2.snake.UI.Coords;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -54,7 +52,15 @@ public class Snake implements SnakeModel {
     }
 
     public void setDirection(SnakeDirection direction) {
-        this.direction = direction;
+        if(directionIsNotOpposite(direction)) {
+            this.direction = direction;
+        } else {
+            System.out.println("The snake can not be reversed!");
+        }
+    }
+
+    private boolean directionIsNotOpposite(SnakeDirection newDirection) {
+        return direction == null || newDirection == null || newDirection.getDirectionNum() != -direction.getDirectionNum();
     }
 
     @Override
@@ -82,37 +88,66 @@ public class Snake implements SnakeModel {
 
     public static void main(String[] vars) {
         Snake snake = new Snake();
-        for(int i = 0; i<= 3; i++) {
+        for(int i = 0; i<= 7; i++) {
             snake.setDirection(SnakeDirection.UP);
             snake.step();
             System.out.println(snake);
+            if(snake.isSelfIntersected()) {
+                System.out.println("intersect!");
+                System.exit(10);
+            }
         }
         snake.growUp();
         System.out.println(snake);        
-        for(int i = 0; i<= 4; i++) {
+        for(int i = 0; i < 1; i++) {
             snake.setDirection(SnakeDirection.LEFT);
             snake.step();
             System.out.println(snake);
+            if(snake.isSelfIntersected()) {
+                System.out.println("intersect!");
+                System.exit(10);
+            }
         }
-        for(int i = 0; i<= 2; i++) {
+        for(int i = 0; i < 1; i++) {
+            snake.setDirection(SnakeDirection.RIGHT);
+            snake.step();
+            System.out.println(snake);
+            if(snake.isSelfIntersected()) {
+                System.out.println("intersect!");
+                System.exit(10);
+            }
+        }
+        for(int i = 0; i < 1; i++) {
             snake.setDirection(SnakeDirection.DOWN);
             snake.growUp();
             System.out.println(snake);
+            if(snake.isSelfIntersected()) {
+                System.out.println("intersect!");
+                System.exit(10);
+            }
         }
         for(int i = 0; i<= 5; i++) {
             snake.setDirection(SnakeDirection.RIGHT);
             snake.step();
             System.out.println(snake);
+            if(snake.isSelfIntersected()) {
+                System.out.println("intersect!");
+                System.exit(10);
+            }
         }
     }
 
     public Coords intersect(Coords coords) {
-        for (Coords segment : snakeBody) {
-            if(segment.equals(coords)) {
-                return coords;
-            }
+        if(snakeBody.contains(coords)) {
+            return coords;
         }
         return null;
+    }
+
+    public boolean isSelfIntersected() {
+        Set<Coords> bodySet = new HashSet<Coords>(snakeBody);
+        return bodySet.size() < snakeBody.size();
+
     }
 
     @Override
