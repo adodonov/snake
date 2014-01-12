@@ -51,20 +51,52 @@ public class Snake implements SnakeModel {
         return direction;
     }
 
-    public void setDirection(SnakeDirection direction) {
-        if(directionIsNotOpposite(direction)) {
+    private void setDirection(SnakeDirection direction) {
             this.direction = direction;
-        } else {
-            System.out.println("The snake can not be reversed!");
+    }
+
+    public void turnOnLeft() {
+        if(direction == null) {direction = calculateDefaultDirection();}
+        switch(direction) {
+            case DOWN:
+                setDirection(SnakeDirection.RIGHT);
+            break;
+            case UP:
+                setDirection(SnakeDirection.LEFT);
+            break;
+            case LEFT:
+                setDirection(SnakeDirection.DOWN);
+            break;
+            case RIGHT:
+                setDirection(SnakeDirection.UP);
+            break;
+        }
+    }
+
+    public void turnOnRight() {
+        if(direction == null) {direction = calculateDefaultDirection();}        
+        switch(direction) {
+            case DOWN:
+                setDirection(SnakeDirection.LEFT);
+            break;
+            case UP:
+                setDirection(SnakeDirection.RIGHT);
+            break;
+            case LEFT:
+                setDirection(SnakeDirection.UP);
+            break;
+            case RIGHT:
+                setDirection(SnakeDirection.DOWN);
+            break;
         }
     }
 
     private boolean directionIsNotOpposite(SnakeDirection newDirection) {
         return direction == null || newDirection == null || newDirection.getDirectionNum() != -direction.getDirectionNum();
     }
-
+                                                               
     @Override
-    public Map<Coords, Color> getCells() {
+    public Map<Coords, Color> getCells() {   
         Map<Coords, Color> snakeCells = new HashMap<Coords, Color>();
         for(Coords segment : snakeBody) {
             snakeCells.put(segment, GREEN);
@@ -88,8 +120,8 @@ public class Snake implements SnakeModel {
 
     public static void main(String[] vars) {
         Snake snake = new Snake();
+        snake.turnOnRight();
         for(int i = 0; i<= 7; i++) {
-            snake.setDirection(SnakeDirection.UP);
             snake.step();
             System.out.println(snake);
             if(snake.isSelfIntersected()) {
@@ -98,9 +130,9 @@ public class Snake implements SnakeModel {
             }
         }
         snake.growUp();
-        System.out.println(snake);        
+        System.out.println(snake);
+        snake.turnOnLeft();
         for(int i = 0; i < 1; i++) {
-            snake.setDirection(SnakeDirection.LEFT);
             snake.step();
             System.out.println(snake);
             if(snake.isSelfIntersected()) {
@@ -108,17 +140,8 @@ public class Snake implements SnakeModel {
                 System.exit(10);
             }
         }
+        snake.turnOnLeft();
         for(int i = 0; i < 1; i++) {
-            snake.setDirection(SnakeDirection.RIGHT);
-            snake.step();
-            System.out.println(snake);
-            if(snake.isSelfIntersected()) {
-                System.out.println("intersect!");
-                System.exit(10);
-            }
-        }
-        for(int i = 0; i < 1; i++) {
-            snake.setDirection(SnakeDirection.DOWN);
             snake.growUp();
             System.out.println(snake);
             if(snake.isSelfIntersected()) {
@@ -126,8 +149,8 @@ public class Snake implements SnakeModel {
                 System.exit(10);
             }
         }
+        snake.turnOnLeft();
         for(int i = 0; i<= 5; i++) {
-            snake.setDirection(SnakeDirection.RIGHT);
             snake.step();
             System.out.println(snake);
             if(snake.isSelfIntersected()) {
