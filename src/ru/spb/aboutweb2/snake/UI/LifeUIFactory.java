@@ -10,7 +10,7 @@ package ru.spb.aboutweb2.snake.UI;
 public class LifeUIFactory {
 
     public static LifeUI getLifeUI() {
-        LifeUI lifeUI = new LifeUIImpl();
+        LifeUI lifeUI = new LifeUI();
         return lifeUI;
     }
 

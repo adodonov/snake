@@ -5,6 +5,7 @@ import ru.spb.aboutweb2.snake.gameengine.CellStatus;
 import ru.spb.aboutweb2.snake.gameengine.GameEngine;
 import ru.spb.aboutweb2.snake.gameengine.GameEngineFactory;
 import ru.spb.aboutweb2.snake.gameengine.LifeState;
+import ru.spb.aboutweb2.snake.gameengine.model.Playground;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +25,9 @@ public class SnakeGame {
 
     private GameEngine gameEngine;
     private LifeUI lifeUI;
+    private Playground playground;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         SnakeGame lifeController = new SnakeGame();
 
@@ -50,8 +52,20 @@ public class SnakeGame {
         lifeController.setLifeUI(lifeUI);
         lifeUI.setController(lifeController);
 
+
+        Playground playground = new Playground();
+
         lifeUI.showUI();
 
+        doGameLoop(playground, lifeUI);
+
+    }
+
+    private static void doGameLoop(Playground playground, LifeUI lifeUI) {
+        while(true) {
+            playground.turn(); 
+            //lifeUI.update(null);
+        }
     }
 
     public void executeCommand(String command) {

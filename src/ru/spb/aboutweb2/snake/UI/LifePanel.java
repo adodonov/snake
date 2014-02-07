@@ -1,7 +1,12 @@
 package ru.spb.aboutweb2.snake.UI;
 
+import ru.spb.aboutweb2.snake.UI.converter.Painter;
+import ru.spb.aboutweb2.snake.UI.converter.SquarePainter;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +27,7 @@ public class LifePanel extends JPanel {
     private int residue;
 
     private Map<Coords, Color> squares = null;
+    private List<Painter> painters = new ArrayList<Painter>() {{add(new SquarePainter());}};
     private OriginBorder originBorder = new OriginBorder();    
 
     private boolean showOriginBorder = true;
@@ -34,34 +40,25 @@ public class LifePanel extends JPanel {
     public void paintComponent(Graphics g) {
         int focusX = uiState.getFocusX();
         int focusY = uiState.getFocusY();
-        int cellSize = uiState.getCellSize();        
+        int cellSize = uiState.getCellSize();
 
         g.setColor (new Color(240, 255, 255));
         g.fillRect( 0, 0, fieldWidth, fieldHeight );
         drawGrid(g, cellSize);
-        drawOrigin(g, cellSize);
 
-          if (squares != null) {
+        for(Painter pt : painters) {
+            pt.paint(g, new Coords(2,5), new GridProperties(fieldHeight, focusX, focusY, cellSize, residue));
+        }
+
+        if (squares != null) {
             for(Coords cell : squares.keySet()) {
                 g.setColor(squares.get(cell));
                 g.fillRect((cell.getCoordX() + focusX) * cellSize + 1 , (fieldHeight - residue) - ((cell.getCoordY() + focusY) * cellSize) + 1 , cellSize-1, cellSize-1);
             }
-
-          }
-    }
-
-    private void drawOrigin(Graphics g, int gridSpace) {
-        int focusX = uiState.getFocusX();
-        int focusY = uiState.getFocusY();
-
-        g.setColor(Color.RED);
-        if(originBorder == null || originBorder.isEmpty() || !showOriginBorder  ) {return;}
-        for(Segment segment : originBorder.getSegments()) {
-            g.drawLine((segment.getP1().getCoordX() + focusX) * gridSpace, (fieldHeight - residue) - (segment.getP1().getCoordY() + focusY - 1) * gridSpace,
-                    (segment.getP2().getCoordX() + focusX) * gridSpace, (fieldHeight - residue) - (segment.getP2().getCoordY() + focusY - 1) * gridSpace);
         }
-
     }
+
+
 
     private void drawGrid(Graphics g, int gridSpace) {
         g.setColor(Color.GRAY);

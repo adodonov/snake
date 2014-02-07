@@ -41,7 +41,7 @@ public class LifeFrame  extends JFrame {
                     repaintLifePanel();
                 }    
              }
-             System.out.println("FocusX " + lifePanel.getFocusX() + "FocusY " + lifePanel.getFocusY());
+             System.out.println("FocusX " + lifePanel.getFocusX() + " FocusY " + lifePanel.getFocusY());
              return false;
          }
      }

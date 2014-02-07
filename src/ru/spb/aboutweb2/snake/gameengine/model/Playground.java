@@ -28,4 +28,24 @@ public class Playground implements SnakeModel {
         result.putAll(rabbit.getCells());
         return result;
     }
+
+    public void turn() {
+
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public Stones getStones() {
+        return stones;
+    }
+
+    public Rabbit getRabbit() {
+        return rabbit;
+    }
+
+    public int getScores() {
+        return scores;
+    }
 }
